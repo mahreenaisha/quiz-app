@@ -1,0 +1,79 @@
+<!-- document type of file. tells the browser that this is a HTML5 document and use html rules to render the page -->
+<!DOCTYPE html> 
+
+<!-- html tag is the root of the page. it says the language used in the content of the webpage is english. it helps screen readers know that.-->
+<html lang="en"> 
+
+<!-- information about webpage but its not displayed -->
+<head>
+
+    <!--defines the character encoding of the webpage. the computer stores character as bytes -->
+    <!-- Character encoding (like UTF-8) means —
+It’s a system that tells the computer how to store and display text characters (letters, numbers, emojis, symbols, etc.) as bytes inside the file. -->
+    <meta charset="UTF-8"> 
+
+    <!-- meta means about the file -->
+     <!-- viewport is for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Game</title>
+
+    <!-- rel means relationship(stylesheet that styles my html doc) and href means hypertext reference (URL) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class = "container">
+
+        <!-- id is for javascript. this screen active will be the "Quiz Time" page. later, it will go inactive and the quiz start or first question will be shown. thats why we are using 2 divs -->
+        <!-- class is used so that you can style elements together -->
+        <div class = "screen active" id = "start-screen">
+            <h1>Quiz Time!</h1>
+            <p>Test your knowledge with these fun questions</p>
+
+            <button id = "start-btn">Start Quiz</button>
+        </div>
+
+        <div class = "screen" id = "quiz-screen">
+            <div>
+
+                <!-- this value in h2 will be updated whenever we go to the next question, thats why we are taking if as question-text so that we can manipulate it with js -->
+                <h2 id = "question-text">Question goes here</h2>
+
+                <!-- we are putting quiz info div inside the quiz screen div because all the elements should be grouped into one div as they represent the quiz screen -->
+            <div class = "quiz-info">
+                <p>
+                    <!-- <span> is an inline container used to mark or group small parts of text or elements inside a line — mainly so you can style them with CSS or manipulate them with JavaScript. -->
+                    <!-- we are not giving an id to the total number of qs span tag because it is static and does not require js -->
+                    <!-- while the current q number keeps changing for each question, thats why it has an id-->
+                        Question <span id = "current-question-number">1</span> of <span>5</span>
+                </p>
+
+                <p>Score: <span id = "score">0</span></p>
+            </div>
+
+            </div>
+            
+            <div id = "answers-container" class = "answers-container">
+                <!-- answer buttons will be inserted here later from our js code later at some point -->
+            </div>
+            
+            <div class = "progress-bar">
+                <div id = "progress" class = "progress"></div>
+            </div>
+        </div>
+
+        <div class = "screen" id = "result-screen">
+            <h1>Quiz Results</h1>
+
+            <div>
+            <!-- id for final score because it can change everytime someone takes the same quiz. if for max-score because there can be different number of questions in the next quiz  -->
+                <p>You scored <span id = "final-score">0</span> out of <span id = "max-score">5</span></p>
+                <div id = "result-message">Good job!</div>
+            </div>
+
+            <button id = "restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+</body>
+</html>
