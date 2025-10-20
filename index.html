@@ -35,7 +35,7 @@ It’s a system that tells the computer how to store and display text characters
         </div>
 
         <div class = "screen" id = "quiz-screen">
-            <div>
+            <div class = "quiz-header">
 
                 <!-- this value in h2 will be updated whenever we go to the next question, thats why we are taking if as question-text so that we can manipulate it with js -->
                 <h2 id = "question-text">Question goes here</h2>
@@ -66,7 +66,7 @@ It’s a system that tells the computer how to store and display text characters
         <div class = "screen" id = "result-screen">
             <h1>Quiz Results</h1>
 
-            <div>
+            <div class = "result-info">
             <!-- id for final score because it can change everytime someone takes the same quiz. if for max-score because there can be different number of questions in the next quiz  -->
                 <p>You scored <span id = "final-score">0</span> out of <span id = "max-score">5</span></p>
                 <div id = "result-message">Good job!</div>
@@ -74,6 +74,7 @@ It’s a system that tells the computer how to store and display text characters
 
             <button id = "restart-btn">Restart Quiz</button>
         </div>
+
     </div>
 </body>
 </html>
