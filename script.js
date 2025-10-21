@@ -15,72 +15,33 @@ const restartButton = document.getElementById("restart-btn");
 const progressBar = document.getElementById("progress");
 const nextButton = document.getElementById("next");
 
-// Quiz Data
-const quizQuestions = [
-  {
-    question: "Who is the main character of Naruto?",
-    answers: [
-      { text: "Sasuke Uchiha", correct: false },
-      { text: "Naruto Uzumaki", correct: true },
-      { text: "Kakashi Hatake", correct: false },
-      { text: "Sakura Haruno", correct: false },
-    ],
-    explanation: "Naruto Uzumaki is the main character — a ninja who dreams of becoming Hokage.",
-  },
-  {
-    question: "In Attack on Titan, what are the giant humanoid creatures called?",
-    answers: [
-      { text: "Demons", correct: false },
-      { text: "Titans", correct: true },
-      { text: "Giants", correct: false },
-      { text: "Monsters", correct: false },
-    ],
-    explanation: "The giant creatures in the show are called Titans — they are central to the story’s mystery.",
-  },
-  {
-    question: "What is the name of the school in My Hero Academia?",
-    answers: [
-      { text: "Konoha Academy", correct: false },
-      { text: "UA High School", correct: true },
-      { text: "Hero Academy", correct: false },
-      { text: "Saiyan High", correct: false },
-    ],
-    explanation: "UA High School trains young students to become professional heroes.",
-  },
-  {
-    question: "In One Piece, what is Luffy’s dream?",
-    answers: [
-      { text: "To become a Marine", correct: false },
-      { text: "To become the Pirate King", correct: true },
-      { text: "To find Dragon Balls", correct: false },
-      { text: "To defeat Goku", correct: false },
-    ],
-    explanation: "Monkey D. Luffy dreams of becoming the Pirate King by finding the legendary treasure, One Piece.",
-  },
-  {
-    question: "What is Goku’s signature attack in Dragon Ball?",
-    answers: [
-      { text: "Rasengan", correct: false },
-      { text: "Kamehameha", correct: true },
-      { text: "Chidori", correct: false },
-      { text: "Detroit Smash", correct: false },
-    ],
-    explanation: "The Kamehameha is Goku’s iconic energy blast attack, taught to him by Master Roshi.",
-  },
-];
-
 // Quiz state variables
+let quizQuestions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let answersDisabled = false;
-
-totalQuestionsSpan.textContent = quizQuestions.length;
-maxScoreSpan.textContent = quizQuestions.length;
 
 // Event listeners
 startButton.addEventListener("click", startQuiz);
 restartButton.addEventListener("click", restartQuiz);
 nextButton.addEventListener("click", handleNextQuestion);
+
+// Load questions dynamically from local JSON
+async function loadQuestions() {
+  try {
+    const response = await fetch("questions.json");
+    quizQuestions = await response.json();
+
+    totalQuestionsSpan.textContent = quizQuestions.length;
+    maxScoreSpan.textContent = quizQuestions.length;
+  } catch (error) {
+    console.error("Failed to load questions:", error);
+    alert("Could not load quiz questions.");
+  }
+}
+
+// Load questions when page loads
+loadQuestions();
 
 function startQuiz() {
   currentQuestionIndex = 0;
@@ -129,7 +90,7 @@ function selectAnswer(event) {
   const isCorrect = selectedButton.dataset.correct === "true";
   const currentQuestion = quizQuestions[currentQuestionIndex];
 
-  // highlight correct and incorrect
+  // Highlight correct and incorrect answers
   Array.from(answersContainer.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
@@ -138,24 +99,23 @@ function selectAnswer(event) {
     }
   });
 
-  // update score
+  // Update score
   if (isCorrect) {
     score++;
     scoreSpan.textContent = score;
   }
 
-  // show explanation
+  // Show explanation
   const explanationDiv = document.getElementById("explanation");
   explanationDiv.textContent = currentQuestion.explanation;
   explanationDiv.style.display = "block";
 
-  // show next button now
+  // Show next button
   nextButton.style.display = "inline-block";
 }
 
 function handleNextQuestion() {
   currentQuestionIndex++;
-
   if (currentQuestionIndex < quizQuestions.length) {
     showQuestion();
   } else {

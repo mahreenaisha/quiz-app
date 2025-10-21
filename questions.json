@@ -1,0 +1,102 @@
+[
+  {
+    "question": "Who is the main character of Naruto?",
+    "answers": [
+      { "text": "Sasuke Uchiha", "correct": false },
+      { "text": "Naruto Uzumaki", "correct": true },
+      { "text": "Kakashi Hatake", "correct": false },
+      { "text": "Sakura Haruno", "correct": false }
+    ],
+    "explanation": "Naruto Uzumaki is the main character — a ninja who dreams of becoming Hokage."
+  },
+  {
+    "question": "In Attack on Titan, what are the giant humanoid creatures called?",
+    "answers": [
+      { "text": "Demons", "correct": false },
+      { "text": "Titans", "correct": true },
+      { "text": "Giants", "correct": false },
+      { "text": "Monsters", "correct": false }
+    ],
+    "explanation": "The giant creatures in the show are called Titans — they are central to the story’s mystery."
+  },
+  {
+    "question": "What is the name of the school in My Hero Academia?",
+    "answers": [
+      { "text": "Konoha Academy", "correct": false },
+      { "text": "UA High School", "correct": true },
+      { "text": "Hero Academy", "correct": false },
+      { "text": "Saiyan High", "correct": false }
+    ],
+    "explanation": "UA High School trains young students to become professional heroes."
+  },
+  {
+    "question": "In One Piece, what is Luffy’s dream?",
+    "answers": [
+      { "text": "To become a Marine", "correct": false },
+      { "text": "To become the Pirate King", "correct": true },
+      { "text": "To find Dragon Balls", "correct": false },
+      { "text": "To defeat Goku", "correct": false }
+    ],
+    "explanation": "Monkey D. Luffy dreams of becoming the Pirate King by finding the legendary treasure, One Piece."
+  },
+  {
+    "question": "What is Goku’s signature attack in Dragon Ball?",
+    "answers": [
+      { "text": "Rasengan", "correct": false },
+      { "text": "Kamehameha", "correct": true },
+      { "text": "Chidori", "correct": false },
+      { "text": "Detroit Smash", "correct": false }
+    ],
+    "explanation": "The Kamehameha is Goku’s iconic energy blast attack, taught to him by Master Roshi."
+  },
+  {
+    "question": "Who is the captain of the Straw Hat Pirates?",
+    "answers": [
+      { "text": "Zoro", "correct": false },
+      { "text": "Sanji", "correct": false },
+      { "text": "Monkey D. Luffy", "correct": true },
+      { "text": "Usopp", "correct": false }
+    ],
+    "explanation": "Monkey D. Luffy is the captain of the Straw Hat Pirates."
+  },
+  {
+    "question": "What is the Quirk of Izuku Midoriya?",
+    "answers": [
+      { "text": "Explosion", "correct": false },
+      { "text": "One For All", "correct": true },
+      { "text": "Ice Powers", "correct": false },
+      { "text": "Telepathy", "correct": false }
+    ],
+    "explanation": "Izuku Midoriya inherits the Quirk 'One For All' from All Might."
+  },
+  {
+    "question": "What is the ultimate goal of the Akatsuki in Naruto?",
+    "answers": [
+      { "text": "Become Hokage", "correct": false },
+      { "text": "Collect all Tailed Beasts", "correct": true },
+      { "text": "Defeat Sasuke", "correct": false },
+      { "text": "Find Dragon Balls", "correct": false }
+    ],
+    "explanation": "The Akatsuki aims to collect all Tailed Beasts to dominate the world."
+  },
+  {
+    "question": "Which anime features the phrase 'I am gonna be King of the Pirates!'?",
+    "answers": [
+      { "text": "Dragon Ball", "correct": false },
+      { "text": "One Piece", "correct": true },
+      { "text": "Naruto", "correct": false },
+      { "text": "Bleach", "correct": false }
+    ],
+    "explanation": "Luffy says this line in One Piece as his ultimate goal."
+  },
+  {
+    "question": "Who teaches Naruto the Rasengan?",
+    "answers": [
+      { "text": "Jiraiya", "correct": false },
+      { "text": "Kakashi", "correct": false },
+      { "text": "Minato Namikaze", "correct": false },
+      { "text": "Kakashi's teacher / 4th Hokage's technique", "correct": true }
+    ],
+    "explanation": "Naruto learns the Rasengan from Jiraiya, who was taught by Minato Namikaze."
+  }
+]
