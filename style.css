@@ -1,10 +1,6 @@
-/* Basic Reset */
-
-/* remember about box-border property */
 * {
     margin: 0;
     padding: 0;
-    /* we use border-box so that padding happens within the width of the div and not outside it */
     box-sizing: border-box;
 }
 
@@ -13,32 +9,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* we use min-height so that even if there is not content inside the div, its minimum height will be 100 viewport height */
     min-height: 100vh;
-    /* em means root em means relative to the root font size */
-    /* If a user increases the browser’s font size for better readability, rem-based spacing grows automatically. */
     padding: 1rem;
     font-family: sans-serif;
 }
 
 .container {
     background-color: white;
-    /* rounded corners */
     border-radius: 1rem;
-    /* syntax: horizontal-offset vertical-offset blur-radius color; the 0.1 in rgba means opacity */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    /* take full width of parent */
     width: 100%;
-    /* even on larger screens the max width will be 600px */
     max-width: 600px;
-    /* if content does not fit in the element, hide the excess content */
     overflow: hidden;
-    /* relative means I can use top or bottom properties and change its position too */
     position: relative;
 }
-
-
-/* SCREENS */
 
 .screen{
     display: none; 
@@ -50,13 +34,9 @@ body {
     display: block;
 }
 
-/* START SCREEN  */
-
 #start-screen h1 {
     color: #e86a33;
     margin-bottom: 20px;
-    /* Make the text 2.5 times the root font size. */
-    /* If a user increases browser font size (for accessibility), rem scales proportionally. */
     font-size: 2.5rem;
 }
 
@@ -74,7 +54,6 @@ body {
     color: #333;
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    /* Space between lines of text inside an element. */
     line-height: 1.4;
 }
 
@@ -95,18 +74,14 @@ body {
 .answer-btn {
     background-color: #f8f0e5;
     color: #333;
-    /* border: <border-width> <border-style> <border-color>; */
     border: 2px solid #eadbc8;
     border-radius: 10px;
     padding: 1rem;
-    /* changes your mouse cursor when you hover over it */
     cursor: pointer;
     text-align: left;
-    /* so that it changes color slowly when cursor comes on it */
     transition: all 0.3s ease;
 }
 
-/* improves UX */
 .answer-btn:hover{
     background-color: #eadbc8;
     border-color: #dac0ae;
@@ -135,7 +110,6 @@ body {
     height: 10px;
     background-color: #f8f0e5;
     border-radius: 5px;
-    /* if any child element extends beyond my border, hide the extra part */
     overflow: hidden;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -144,12 +118,9 @@ body {
 .progress {
     height:100px;
     background-color: #e86a33;
-    /* 0% when we first start the quiz */
     width: 0%;
     transition: width 0.3 ease;   
 }
-
-/* RESULT SCREEN */
 
 #result-screen h1 {
     color: #e86a33;
@@ -180,7 +151,6 @@ button {
     color: white;
     border: none;
     border-radius: 10px;
-    /* topandbottom leftandright */
     padding: 15px 30px;
     font-size: 1.1rem;
     cursor: pointer;
@@ -191,10 +161,7 @@ button:hover{
     background-color: #d45b28;
 }
 
-/* RESPONSIVE DESIGN */
 @media (max-width: 500px){
-    /* when we hit 500px and below, implement the styles below */
-
     .screen {
         padding: 1rem;
     }
