@@ -6,17 +6,16 @@ const startButton = document.getElementById("start-btn");
 const questionText = document.getElementById("question-text");
 const answersContainer = document.getElementById("answers-container");
 const currentQuestionSpan = document.getElementById("current-question-number");
-const totalQuestionsSpan = document.getElementById("total-questions"); //cant find this in the html doc
+const totalQuestionsSpan = document.getElementById("total-questions");
 const scoreSpan = document.getElementById("score");
 const finalScoreSpan = document.getElementById("final-score");
 const maxScoreSpan = document.getElementById("max-score");
 const resultMessage = document.getElementById("result-message");
 const restartButton = document.getElementById("restart-btn");
 const progressBar = document.getElementById("progress");
+const nextButton = document.getElementById("next");
 
-// array of 5 diff objects (list is called array in js)
-//all the objects have the same fields i.e. the question and a list of answers
-//each answer has a "text" and "correct" field
+// Quiz Data
 const quizQuestions = [
   {
     question: "Who is the main character of Naruto?",
@@ -70,123 +69,59 @@ const quizQuestions = [
   },
 ];
 
-//QUIZ STATE VARS
+// Quiz state variables
 let currentQuestionIndex = 0;
 let score = 0;
-// anserDisabled is used for the reason that we wont be able to click the answer button twice before going to the next question
 let answersDisabled = false;
 
 totalQuestionsSpan.textContent = quizQuestions.length;
 maxScoreSpan.textContent = quizQuestions.length;
 
-//event listeners
+// Event listeners
 startButton.addEventListener("click", startQuiz);
 restartButton.addEventListener("click", restartQuiz);
+nextButton.addEventListener("click", handleNextQuestion);
 
 function startQuiz() {
-  //reset vars
-  //when you start the quiz, we want to begin from first question (index 0)
   currentQuestionIndex = 0;
   score = 0;
-  //text content is used when the value will be displayed in the app
-  //score must be reset to 0
   scoreSpan.textContent = 0;
 
-  //.active is the class
-  //removing and adding .active class
   startScreen.classList.remove("active");
   quizScreen.classList.add("active");
 
-  //displays the first question
+  nextButton.style.display = "none"; // hide next button initially
   showQuestion();
 }
 
 function showQuestion() {
-  //reset state
-  //making the answer buttons clickable
   answersDisabled = false;
-
   const currentQuestion = quizQuestions[currentQuestionIndex];
 
-  //text content because it will be shown on the screen
-  //Question 1 of 5
   currentQuestionSpan.textContent = currentQuestionIndex + 1;
-
   const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
-  //eg: 50%
-  //.style lets you modify the inline css of an element from js
-  //.width specifically controls the horizontal size of the element
-  //But CSS needs the width in a string with a unit, like "40%" or "80%".
-  //If either side is a string, JavaScript converts the other side to a string too and joins them together.
   progressBar.style.width = progressPercent + "%";
 
-  //question text
   questionText.textContent = currentQuestion.question;
-
-  //innerHTML gets/sets the HTML inside the element
-  //setting it to empty string to clear out any existing content
   answersContainer.innerHTML = "";
 
-  //currentQuestion.answers is an array of answer objects
-  //forEach iterates the array
-  //answer => { ... } is an arrow function
+  const explanationDiv = document.getElementById("explanation");
+  explanationDiv.textContent = "";
+  explanationDiv.style.display = "none";
+
+  nextButton.style.display = "none"; // hide next button until answer selected
+
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.textContent = answer.text;
-    //classList is a convenient API to add/remove/toggle CSS classes.
     button.classList.add("answer-btn");
-
-    //what is dataset? its a property of the button element that allows you to store custom data
-    //stored as strings "true" or "false"
-    //dataset object is designed to store custom HTML data attributes
     button.dataset.correct = answer.correct;
-
     button.addEventListener("click", selectAnswer);
-
-    //<div id="answers-container">
-    //   <button class="answer-btn" data-correct="true">Paris</button>
-    // </div>
-
     answersContainer.appendChild(button);
   });
 }
 
 function selectAnswer(event) {
-  //optimisation check
-  if (answersDisabled) return;
-
-  answersDisabled = true;
-
-  const selectedButton = event.target;
-  const isCorrect = selectedButton.dataset.correct === "true";
-
-  // Here Array.from() is used to convert the NodeList returned by answersContainer.children into an array, this is because the NodeList is not an array and we need to use the forEach method
-  Array.from(answersContainer.children).forEach((button) => {
-    if (button.dataset.correct === "true") {
-      button.classList.add("correct");
-    } else if (button === selectedButton) {
-      button.classList.add("incorrect");
-    }
-  });
-
-  if (isCorrect) {
-    score++;
-    scoreSpan.textContent = score;
-  }
-
-  setTimeout(() => {
-    currentQuestionIndex++;
-
-    // check if there are more questions or if the quiz is over
-    if (currentQuestionIndex < quizQuestions.length) {
-      showQuestion();
-    } else {
-      showResults();
-    }
-  }, 1000);
-}
-
-function selectAnswer(event) {
   if (answersDisabled) return;
   answersDisabled = true;
 
@@ -194,7 +129,7 @@ function selectAnswer(event) {
   const isCorrect = selectedButton.dataset.correct === "true";
   const currentQuestion = quizQuestions[currentQuestionIndex];
 
-  // Highlight correct/wrong answers
+  // highlight correct and incorrect
   Array.from(answersContainer.children).forEach((button) => {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
@@ -203,28 +138,29 @@ function selectAnswer(event) {
     }
   });
 
-  // Update score if correct
+  // update score
   if (isCorrect) {
     score++;
     scoreSpan.textContent = score;
   }
 
-  // Show explanation
+  // show explanation
   const explanationDiv = document.getElementById("explanation");
   explanationDiv.textContent = currentQuestion.explanation;
   explanationDiv.style.display = "block";
 
-  // Move to next question after 2 seconds
-  setTimeout(() => {
-    explanationDiv.textContent = ""; // clear explanation
-    currentQuestionIndex++;
+  // show next button now
+  nextButton.style.display = "inline-block";
+}
 
-    if (currentQuestionIndex < quizQuestions.length) {
-      showQuestion();
-    } else {
-      showResults();
-    }
-  }, 3000);
+function handleNextQuestion() {
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < quizQuestions.length) {
+    showQuestion();
+  } else {
+    showResults();
+  }
 }
 
 function showResults() {
@@ -236,20 +172,19 @@ function showResults() {
   const percentage = (score / quizQuestions.length) * 100;
 
   if (percentage === 100) {
-    resultMessage.textContent = "Perfect! You're a genius!";
+    resultMessage.textContent = "Perfect! You're a true anime geek!";
   } else if (percentage >= 80) {
     resultMessage.textContent = "Great job! You know your stuff!";
   } else if (percentage >= 60) {
-    resultMessage.textContent = "Good effort! Keep learning!";
+    resultMessage.textContent = "Good effort!";
   } else if (percentage >= 40) {
     resultMessage.textContent = "Not bad! Try again to improve!";
   } else {
-    resultMessage.textContent = "Keep studying! You'll get better!";
+    resultMessage.textContent = "You'll get better!";
   }
 }
 
 function restartQuiz() {
   resultScreen.classList.remove("active");
-
   startQuiz();
 }
