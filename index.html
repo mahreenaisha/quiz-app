@@ -35,6 +35,11 @@ It’s a system that tells the computer how to store and display text characters
         </div>
 
         <div class = "screen" id = "quiz-screen">
+
+            <div class = "progress-bar">
+                <div id = "progress" class = "progress"></div>
+            </div>
+
             <div class = "quiz-header">
 
                 <!-- this value in h2 will be updated whenever we go to the next question, thats why we are taking if as question-text so that we can manipulate it with js -->
@@ -46,10 +51,10 @@ It’s a system that tells the computer how to store and display text characters
                     <!-- <span> is an inline container used to mark or group small parts of text or elements inside a line — mainly so you can style them with CSS or manipulate them with JavaScript. -->
                     <!-- we are not giving an id to the total number of qs span tag because it is static and does not require js -->
                     <!-- while the current q number keeps changing for each question, thats why it has an id-->
-                        Question <span id = "current-question-number">1</span> of <span>5</span>
+                        Question <span id = "current-question-number">1</span> of <span id = "total-questions">5</span>
                 </p>
 
-                <p>Score: <span id = "score">0</span></p>
+                <p>Score: <span id = "score">0</span></p> <!--shows score as you progress thru the quiz-->
             </div>
 
             </div>
@@ -57,9 +62,9 @@ It’s a system that tells the computer how to store and display text characters
             <div id = "answers-container" class = "answers-container">
                 <!-- answer buttons will be inserted here later from our js code later at some point -->
             </div>
-            
-            <div class = "progress-bar">
-                <div id = "progress" class = "progress"></div>
+
+            <div id = "explanation" class = "explanation">
+                <!--  -->
             </div>
         </div>
 
@@ -74,7 +79,9 @@ It’s a system that tells the computer how to store and display text characters
 
             <button id = "restart-btn">Restart Quiz</button>
         </div>
-
     </div>
+
+    <!-- linking to js file -->
+    <script src = "script.js"></script>
 </body>
 </html>

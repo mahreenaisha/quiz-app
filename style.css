@@ -23,19 +23,20 @@ body {
 
 .container {
     background-color: white;
-    //rounded corners
+    /* rounded corners */
     border-radius: 1rem;
-    //syntax: horizontal-offset vertical-offset blur-radius color; the 0.1 in rgba means opacity
+    /* syntax: horizontal-offset vertical-offset blur-radius color; the 0.1 in rgba means opacity */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    //take full width of parent 
+    /* take full width of parent */
     width: 100%;
-    //even on larger screens the max width will be 600px
+    /* even on larger screens the max width will be 600px */
     max-width: 600px;
-    //if content does not fit in the element, hide the excess content
+    /* if content does not fit in the element, hide the excess content */
     overflow: hidden;
-    //relative means i can use top or bottom properties and change its position too
+    /* relative means I can use top or bottom properties and change its position too */
     position: relative;
 }
+
 
 /* SCREENS */
 
@@ -123,6 +124,15 @@ body {
     color: #dc3545;
 }
 
+.explanation {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #444;
+  text-align: center;
+  font-style: italic;
+  transition: opacity 0.3s ease;
+}
+
 .progress-bar {
     height: 10px;
     background-color: #f8f0e5;
@@ -130,6 +140,7 @@ body {
     /* if any child element extends beyond my border, hide the extra part */
     overflow: hidden;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .progress {
